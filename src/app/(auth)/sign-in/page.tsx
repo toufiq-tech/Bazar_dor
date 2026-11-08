@@ -10,8 +10,15 @@ import {
   FieldError,
 } from "@heroui/react";
 import { signIn } from "@/lib/auth-client";
+import toast from "react-hot-toast";
+
 
 export default function SignIn() {
+  const handleGoogleSignUp = async () => {
+         await signIn.social({
+    provider: "google",
+  });
+  };
   const onSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -23,6 +30,7 @@ export default function SignIn() {
     callbackURL: "/",
 });
     console.log("Sign In Data:", signInData, error);
+    toast.success("সাইন ইন সফল হয়েছে!")
   };
 
   return (
@@ -104,7 +112,7 @@ export default function SignIn() {
         <div className="grid grid-cols-2 gap-2">
           <button
             type="button"
-            onClick={() => console.log("Google Login")}
+            onClick={handleGoogleSignUp}
             className="h-10 border border-[#E5E7EB] rounded-lg flex items-center justify-center gap-2 text-[10px] font-medium text-[#333]"
           >
             <Image

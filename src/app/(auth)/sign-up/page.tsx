@@ -1,5 +1,6 @@
 "use client";
 
+import toast from "react-hot-toast";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -9,9 +10,11 @@ import {
   Label,
   FieldError,
 } from "@heroui/react";
-import { signUp } from "@/lib/auth-client";
+import { signIn, signUp } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 export default function SignupPage() {
+  const router = useRouter();
   const onSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -27,8 +30,19 @@ export default function SignupPage() {
     name: data.name as string,
     email: data.email as string,
     password: data.password as string,});
-    console.log("Sign Up Data:", signUpData, error);
+    if (signUpData?.user.name) {
+      toast.success("অ্যাকাউন্ট তৈরি হয়েছে! অনুগ্রহ করে লগইন করুন।");
+      router.push("/sign-in");
+    }
   };
+  const handleGoogleSignUp = async () => {
+         await signIn.social({
+    provider: "google",
+  });
+    }
+    
+
+
 
   return (
     <main className="min-h-screen bg-[#f1f6f1] flex flex-col items-center justify-center px-4 py-8">
@@ -42,7 +56,7 @@ export default function SignupPage() {
         </p>
       </div>
 
-      <div className="w-full max-w-[400px] bg-white/80 border border-gray-200 rounded-xl p-6 shadow-sm">
+      <div className="w-full max-w-100 bg-white/80 border border-gray-200 rounded-xl p-6 shadow-sm">
         <Form onSubmit={onSubmit} className="space-y-3">
           <TextField
             isRequired
@@ -151,7 +165,7 @@ export default function SignupPage() {
         <div className="grid grid-cols-2 gap-2">
           <button
             type="button"
-            onClick={() => console.log("Google Signup")}
+            onClick={handleGoogleSignUp}
             className="h-10 border border-[#E5E7EB] rounded-lg flex items-center justify-center gap-2 text-[10px] font-medium text-[#333]"
           >
             <Image
