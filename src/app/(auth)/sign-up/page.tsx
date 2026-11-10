@@ -40,7 +40,11 @@ export default function SignupPage() {
     provider: "google",
   });
     }
-    
+  const handleGithubSignUp = async () => {
+         await signIn.social({
+    provider: "github",
+  });
+    }
 
 
 
@@ -180,7 +184,7 @@ export default function SignupPage() {
 
           <button
             type="button"
-            onClick={() => console.log("Github Signup")}
+            onClick={handleGithubSignUp}
             className="h-10 border border-[#E5E7EB] rounded-lg flex items-center justify-center gap-2 text-[10px] font-medium text-[#333]"
           >
             <svg
