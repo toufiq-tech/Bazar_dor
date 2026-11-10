@@ -6,8 +6,8 @@ import {
   ChevronDown,
   UserRound,
   LogOut,
-  Image,
 } from "lucide-react";
+import NextImage from "next/image";
 import { useEffect, useState, useRef } from "react";
 import { useSession, signOut } from "../lib/auth-client";
 import type { Icategory } from "../types/type";
@@ -117,11 +117,11 @@ export default function Navbar() {
                 className="flex items-center gap-2 rounded-lg px-2 py-1.5 transition hover:bg-gray-100"
               >
                 {user.image ? (
-                  <Image
+                  <NextImage
+                    src="/static/logo-icon.png"
                     width={36}
                     height={36}
-                    src={user.image}
-                    alt="Profile"
+                    alt="লোগো"
                     className="h-9 w-9 rounded-full object-cover"
                   />
                 ) : (

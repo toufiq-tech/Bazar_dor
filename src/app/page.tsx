@@ -2,7 +2,7 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
+import NextImage from "next/image";
 import { useEffect, useState } from "react";
 import PriceRise from "@/components/PriceRise";
 import PriceFall from "@/components/PriceFall";
@@ -60,7 +60,7 @@ export default function HomePage() {
         {/* Right Image */}
         <div className="hidden shrink-0 items-center justify-center sm:flex">
 
-          <Image
+          <NextImage
             src="/static/bazar-hero.png"
             alt="বাজারের ঝুড়ি"
             width={190}
