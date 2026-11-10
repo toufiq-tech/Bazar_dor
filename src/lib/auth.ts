@@ -6,22 +6,24 @@ const client = new MongoClient(process.env.MONGO_URI as string);
 const db = client.db("BazarDor");
 
 export const auth = betterAuth({
-    emailAndPassword: { 
+  baseURL: process.env.BETTER_AUTH_URL,
+
+  emailAndPassword: {
     enabled: true,
-    autoSignIn: false, 
+    autoSignIn: false,
   },
-  socialProviders: { 
-    google: { 
-      clientId: process.env.GOOGLE_CLIENT_ID as string, 
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string, 
+
+  socialProviders: {
+    google: {
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     },
-    github: { 
-      clientId: process.env.GITHUB_CLIENT_ID as string, 
-      clientSecret: process.env.GITHUB_CLIENT_SECRET as string, 
-    }, 
-    
+    github: {
+      clientId: process.env.GITHUB_CLIENT_ID as string,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
+    },
   },
-  
+
   database: mongodbAdapter(db, {
     client,
   }),
