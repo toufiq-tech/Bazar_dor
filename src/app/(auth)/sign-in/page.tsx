@@ -19,6 +19,11 @@ export default function SignIn() {
     provider: "google",
   });
   };
+  const handleGithubSignUp = async () => {
+         await signIn.social({
+    provider: "github",
+  });
+  }
   const onSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -43,7 +48,7 @@ export default function SignIn() {
         বিস্তারিত দাম, বাজার তুলনা ও প্রোফাইল দেখতে অ্যাকাউন্টে ঢুকুন।
       </p>
 
-      <div className="mt-8 w-[335px] bg-white border border-[#E5E7EB] rounded-2xl p-5 shadow-sm">
+      <div className="mt-8 w-85 bg-white border border-[#E5E7EB] rounded-2xl p-5 shadow-sm">
         <Form onSubmit={onSubmit}>
           <TextField
             isRequired
@@ -97,7 +102,7 @@ export default function SignIn() {
 
           <button
             type="submit"
-            className="mt-5 w-full h-[42px] rounded-lg bg-[#0B8F3A] hover:bg-[#097A31] text-white text-sm font-medium shadow"
+            className="mt-5 w-full h-11 rounded-lg bg-[#0B8F3A] hover:bg-[#097A31] text-white text-sm font-medium shadow"
           >
             সাইন ইন
           </button>
@@ -127,7 +132,7 @@ export default function SignIn() {
 
           <button
             type="button"
-            onClick={() => console.log("Github Login")}
+            onClick={handleGithubSignUp}
             className="h-10 border border-[#E5E7EB] rounded-lg flex items-center justify-center gap-2 text-[10px] font-medium text-[#333]"
           >
             <svg
