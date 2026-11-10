@@ -1,9 +1,8 @@
-
 export default function Footer() {
   return (
     <footer className="w-full border-t border-gray-200 bg-[#fbfdfb]">
 
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-4 py-5 text-center sm:flex-row sm:text-left">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-3 py-5 text-center sm:flex-row sm:gap-3 sm:px-4 sm:text-left">
 
         {/* Left Text */}
         <p className="text-xs text-gray-700">
@@ -16,7 +15,6 @@ export default function Footer() {
         </p>
 
       </div>
-      
 
     </footer>
   );

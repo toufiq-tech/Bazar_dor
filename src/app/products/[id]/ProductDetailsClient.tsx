@@ -97,8 +97,8 @@ export default function ProductDetailsClient({ id }: { id: string }) {
     <main className="min-h-screen bg-[#f1f6f2] px-3 py-3 sm:px-4">
       <div className="mx-auto max-w-6xl space-y-3">
         {/* Product Header */}
-        <section className="rounded-xl border border-gray-200 bg-[#fbfdfb] p-3">
-          <div className="flex items-center justify-between gap-2">
+        <section className="rounded-xl border border-gray-200 bg-[#fbfdfb] p-3 sm:p-4">
+          <div className="flex flex-col gap-3 min-[400px]:flex-row min-[400px]:items-center min-[400px]:justify-between">
             <div className="flex min-w-0 items-center gap-2.5">
               <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#f1f7f2] text-2xl">
                 {product.image || product.categoryIcon}
@@ -125,7 +125,7 @@ export default function ProductDetailsClient({ id }: { id: string }) {
             </div>
 
             {/* Today's Price */}
-            <div className="shrink-0 rounded-xl bg-[#f1f7f2] px-3 py-2 text-center">
+            <div className="w-full shrink-0 rounded-xl bg-[#f1f7f2] px-3 py-2 text-center min-[400px]:w-auto">
               <p className="text-[9px] text-gray-500">আজকের দাম</p>
 
               <p className="text-lg font-bold leading-6 text-gray-800">
@@ -155,12 +155,12 @@ export default function ProductDetailsClient({ id }: { id: string }) {
         </section>
 
         {/* Price Summary */}
-        <section className="rounded-xl border border-gray-200 bg-[#fbfdfb] p-3">
+        <section className="rounded-xl border border-gray-200 bg-[#fbfdfb] p-3 sm:p-4">
           <h2 className="mb-3 text-xs font-bold text-gray-800">
             দামের সারসংক্ষেপ
           </h2>
 
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-1 min-[400px]:grid-cols-3 gap-2">
             <div className="rounded-xl border border-gray-200 p-2.5">
               <p className="text-[9px] text-gray-600">সর্বনিম্ন দাম</p>
               <p className="mt-1 text-sm font-bold text-green-600">
@@ -188,8 +188,8 @@ export default function ProductDetailsClient({ id }: { id: string }) {
         </section>
 
         {/* Market Prices */}
-        <section className="rounded-xl border border-gray-200 bg-[#fbfdfb] p-3">
-          <div className="mb-3 flex items-center justify-between">
+        <section className="rounded-xl border border-gray-200 bg-[#fbfdfb] p-3 sm:p-4">
+          <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
             <h2 className="text-xs font-bold text-gray-800">
               বাজারভিত্তিক আজকের দাম
             </h2>

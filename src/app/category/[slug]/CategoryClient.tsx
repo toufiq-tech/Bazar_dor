@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
@@ -87,7 +88,7 @@ export default function CategoryClient({
   }, [products, sortOrder]);
 
   return (
-    <main className="min-h-screen bg-[#f1f7f2] px-4 py-8">
+    <main className="min-h-screen bg-[#f1f7f2] px-3 py-6 sm:px-4 sm:py-8">
 
       <div className="mx-auto max-w-6xl">
 
@@ -106,13 +107,13 @@ export default function CategoryClient({
           <>
 
             {/* Category Header */}
-            <section className="mb-4 flex items-center gap-3 rounded-xl border border-gray-200 bg-[#fbfdfb] px-4 py-4">
+            <section className="mb-4 flex items-center gap-3 rounded-xl border border-gray-200 bg-[#fbfdfb] px-3 py-3 sm:px-4 sm:py-4">
 
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#f1f7f2] text-2xl">
                 {category.icon}
               </div>
 
-              <div>
+              <div className="min-w-0">
                 <h1 className="text-lg font-bold text-gray-800">
                   {category.nameBn}
                 </h1>
@@ -125,13 +126,13 @@ export default function CategoryClient({
             </section>
 
             {/* Sorting */}
-            <section className="mb-3 flex items-center justify-end rounded-xl border border-gray-200 bg-[#fbfdfb] px-4 py-3">
+            <section className="mb-3 flex items-center justify-end rounded-xl border border-gray-200 bg-[#fbfdfb] px-3 py-3 sm:px-4">
 
-              <div className="flex items-center gap-2">
+              <div className="flex w-full items-center justify-between gap-2 sm:w-auto sm:justify-end">
 
                 <label
                   htmlFor="sort"
-                  className="text-xs text-gray-500"
+                  className="shrink-0 text-xs text-gray-500"
                 >
                   সাজান
                 </label>
@@ -142,7 +143,7 @@ export default function CategoryClient({
                   onChange={(e) =>
                     setSortOrder(e.target.value as SortOrder)
                   }
-                  className="rounded-lg border border-gray-300 bg-white px-3 py-2 text-xs text-gray-700 outline-none focus:border-green-600"
+                  className="min-w-0 max-w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-xs text-gray-700 outline-none focus:border-green-600"
                 >
                   <option value="default">ডিফল্ট</option>
 
@@ -167,7 +168,7 @@ export default function CategoryClient({
             {/* Products Grid */}
             {sortedProducts.length > 0 ? (
 
-              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
+              <div className="grid grid-cols-1 gap-3 min-[480px]:grid-cols-2 md:grid-cols-3">
 
                 {sortedProducts.map((product) => (
 
@@ -200,7 +201,7 @@ export default function CategoryClient({
                     {/* Price Information */}
                     <div className="flex items-end justify-between gap-2">
 
-                      <div>
+                      <div className="min-w-0">
                         <p className="mb-1 text-[10px] text-gray-500">
                           আজকের দাম
                         </p>
@@ -212,7 +213,7 @@ export default function CategoryClient({
 
                       {/* Price Change Badge */}
                       <span
-                        className={`whitespace-nowrap rounded-full px-2 py-1 text-[10px] font-semibold ${
+                        className={`shrink-0 whitespace-nowrap rounded-full px-2 py-1 text-[10px] font-semibold ${
                           product.change.dir === "up"
                             ? "bg-red-50 text-red-500"
                             : product.change.dir === "down"

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { Iproduct } from "../types/type";
-import  Link  from "next/link";
+import Link from "next/link";
 
 export default function AllProducts() {
   const [products, setProducts] = useState<Iproduct[]>([]);
@@ -40,14 +40,13 @@ export default function AllProducts() {
   }, []);
 
   return (
-    <section className="mx-auto max-w-6xl px-4 pb-10">
+    <section className="mx-auto max-w-6xl px-3 pb-8 sm:px-4 sm:pb-10">
 
       {/* Heading */}
       <div id="all-products" className="mb-4">
-        <h2 className="text-lg font-bold text-gray-800">
+        <h2 className="text-base font-bold text-gray-800 sm:text-lg">
           সব পণ্য
         </h2>
-
       </div>
 
       {/* Loading */}
@@ -68,17 +67,17 @@ export default function AllProducts() {
           </p>
 
           {/* Product Grid */}
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-3 min-[480px]:grid-cols-2 md:grid-cols-3">
 
             {products.map((product) => (
               <Link
                 href={`/products/${product.id}`}
                 key={product.id}
-                className="rounded-xl border border-gray-200 bg-[#fbfdfb] p-3 transition hover:-translate-y-0.5 hover:shadow-md"
+                className="min-w-0 rounded-xl border border-gray-200 bg-[#fbfdfb] p-3 transition hover:-translate-y-0.5 hover:shadow-md"
               >
 
                 {/* Product Information */}
-                <div className="mb-3 flex items-center gap-3">
+                <div className="mb-3 flex min-w-0 items-center gap-3">
 
                   {/* Product Icon */}
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#f1f7f2] text-xl">
@@ -99,9 +98,9 @@ export default function AllProducts() {
                 </div>
 
                 {/* Price Information */}
-                <div className="flex items-end justify-between gap-2">
+                <div className="flex min-w-0 items-end justify-between gap-2">
 
-                  <div>
+                  <div className="min-w-0">
                     <p className="mb-1 text-[10px] text-gray-500">
                       আজকের দাম
                     </p>
@@ -113,7 +112,7 @@ export default function AllProducts() {
 
                   {/* Price Change */}
                   <span
-                    className={`whitespace-nowrap rounded-full px-2 py-1 text-[10px] font-semibold ${
+                    className={`shrink-0 whitespace-nowrap rounded-full px-2 py-1 text-[10px] font-semibold ${
                       product.change.dir === "up"
                         ? "bg-red-50 text-red-500"
                         : product.change.dir === "down"

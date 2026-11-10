@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -40,7 +41,7 @@ export default function ProfilePage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f1f7f2] px-4 py-8">
+    <div className="min-h-screen bg-[#f1f7f2] px-3 py-6 sm:px-4 sm:py-8">
       <div className="mx-auto max-w-3xl">
         {/* Page Heading */}
         <div className="mb-5">
@@ -52,28 +53,28 @@ export default function ProfilePage() {
         </div>
 
         {/* User Information Card */}
-        <div className="mb-4 flex items-center justify-between rounded-xl border border-gray-200 bg-white p-4">
-          <div className="flex items-center gap-3">
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-gray-200 bg-white p-3 sm:p-4">
+          <div className="flex min-w-0 flex-1 items-center gap-3">
             {user?.image ? (
               <NextImage
                 width={48}
                 height={48}
                 src={user.image}
                 alt="Profile"
-                className="h-12 w-12 rounded-xl object-cover"
+                className="h-12 w-12 shrink-0 rounded-xl object-cover"
               />
             ) : (
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-green-100 text-xl font-bold text-green-700">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-green-100 text-xl font-bold text-green-700">
                 {user?.name?.charAt(0) || "U"}
               </div>
             )}
 
-            <div>
-              <h2 className="text-sm font-semibold text-gray-800">
+            <div className="min-w-0">
+              <h2 className="truncate text-sm font-semibold text-gray-800">
                 {user?.name || "User"}
               </h2>
 
-              <p className="text-xs text-gray-500">{user?.email}</p>
+              <p className="break-all text-xs text-gray-500">{user?.email}</p>
             </div>
           </div>
 
@@ -83,7 +84,7 @@ export default function ProfilePage() {
               await signOut();
               router.push("/sign-in");
             }}
-            className="flex items-center gap-1 rounded-lg border border-red-400 px-3 py-2 text-xs font-medium text-red-500 transition hover:bg-red-50"
+            className="flex shrink-0 items-center gap-1 rounded-lg border border-red-400 px-3 py-2 text-xs font-medium text-red-500 transition hover:bg-red-50"
           >
             <LogOut size={14} />
             সাইন আউট
@@ -91,7 +92,7 @@ export default function ProfilePage() {
         </div>
 
         {/* Profile Form Card */}
-        <div className="rounded-xl border border-gray-200 bg-white p-5">
+        <div className="rounded-xl border border-gray-200 bg-white p-4 sm:p-5">
           <h3 className="mb-6 text-sm font-semibold text-gray-800">তথ্য</h3>
 
           <form onSubmit={handleUpdate}>

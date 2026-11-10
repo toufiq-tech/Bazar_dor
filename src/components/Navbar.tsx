@@ -82,30 +82,34 @@ export default function Navbar() {
   return (
     <div className="w-full border-b bg-white">
       {/* Main Navbar */}
-      <div className="flex items-center justify-between px-6 py-3">
+      <div className="flex flex-wrap items-center justify-between gap-3 px-3 py-3 sm:px-4 md:px-6">
         {/* Logo & Date */}
-        <Link href="/">
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-green-600 text-white">
+        <Link href="/" className="min-w-0">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-green-600 text-white sm:h-10 sm:w-10">
               <ShoppingBasket size={20} />
             </div>
 
-            <div>
-              <h1 className="text-lg font-bold text-gray-800">বাজার দর</h1>
+            <div className="min-w-0">
+              <h1 className="text-base font-bold text-gray-800 sm:text-lg">
+                বাজার দর
+              </h1>
 
-              <p className="text-xs text-gray-500">{formatedDate}</p>
+              <p className="text-[10px] text-gray-500 sm:text-xs">
+                {formatedDate}
+              </p>
             </div>
           </div>
         </Link>
 
         {/* Authentication */}
-        <div className="flex items-center gap-6">
+        <div className="flex shrink-0 items-center gap-2 sm:gap-4 md:gap-6">
           {user ? (
             <div className="relative" ref={dropdownRef}>
               {/* Profile Button */}
               <button
                 onClick={() => setDropdownOpen(!dropdownOpen)}
-                className="flex items-center gap-2 rounded-lg px-2 py-1.5 transition hover:bg-gray-100"
+                className="flex max-w-[190px] items-center gap-1.5 rounded-lg px-1.5 py-1.5 transition hover:bg-gray-100 sm:max-w-none sm:gap-2 sm:px-2"
               >
                 {user.image ? (
                   <NextImage
@@ -113,21 +117,21 @@ export default function Navbar() {
                     width={36}
                     height={36}
                     alt="লোগো"
-                    className="h-9 w-9 rounded-full object-cover"
+                    className="h-8 w-8 shrink-0 rounded-full object-cover sm:h-9 sm:w-9"
                   />
                 ) : (
-                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-green-100 text-green-700">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-green-100 text-green-700 sm:h-9 sm:w-9">
                     <UserRound size={20} />
                   </div>
                 )}
 
-                <span className="text-sm font-medium text-gray-700">
+                <span className="truncate text-xs font-medium text-gray-700 sm:text-sm">
                   {user.name || user.email}
                 </span>
 
                 <ChevronDown
                   size={16}
-                  className={`text-gray-500 transition-transform ${
+                  className={`shrink-0 text-gray-500 transition-transform ${
                     dropdownOpen ? "rotate-180" : ""
                   }`}
                 />
@@ -135,12 +139,16 @@ export default function Navbar() {
 
               {/* Dropdown */}
               {dropdownOpen && (
-                <div className="absolute right-0 top-full z-50 mt-2 w-64 rounded-xl border border-gray-200 bg-white p-3 shadow-lg">
+                <div className="absolute right-0 top-full z-50 mt-2 w-[min(16rem,calc(100vw-1.5rem))] rounded-xl border border-gray-200 bg-white p-3 shadow-lg">
                   {/* User Info */}
                   <div className="border-b pb-3">
-                    <h3 className="font-semibold text-gray-800">{user.name}</h3>
+                    <h3 className="break-words font-semibold text-gray-800">
+                      {user.name}
+                    </h3>
 
-                    <p className="mt-1 text-sm text-gray-500">{user.email}</p>
+                    <p className="mt-1 break-all text-sm text-gray-500">
+                      {user.email}
+                    </p>
                   </div>
 
                   {/* My Profile */}
@@ -151,7 +159,7 @@ export default function Navbar() {
                   >
                     <UserRound
                       size={20}
-                      className="text-purple-900"
+                      className="shrink-0 text-purple-900"
                       fill="currentColor"
                     />
 
@@ -167,7 +175,7 @@ export default function Navbar() {
                     }}
                     className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-red-500 transition hover:bg-red-50"
                   >
-                    <span className="flex h-5 w-5 items-center justify-center rounded bg-blue-500 text-white">
+                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded bg-blue-500 text-white">
                       <LogOut size={15} />
                     </span>
 
@@ -180,14 +188,14 @@ export default function Navbar() {
             <>
               <Link
                 href="/sign-in"
-                className="text-sm font-medium text-gray-700 hover:text-green-600"
+                className="text-xs font-medium text-gray-700 hover:text-green-600 sm:text-sm"
               >
                 সাইন ইন
               </Link>
 
               <Link
                 href="/sign-up"
-                className="rounded-lg bg-green-600 px-5 py-2 text-sm font-medium text-white shadow hover:bg-green-700"
+                className="rounded-lg bg-green-600 px-3 py-2 text-xs font-medium text-white shadow hover:bg-green-700 sm:px-5 sm:text-sm"
               >
                 সাইন আপ
               </Link>
@@ -198,9 +206,11 @@ export default function Navbar() {
 
       {/* Dynamic Categories */}
       <div className="border-t bg-gray-50">
-        <div className="flex items-center gap-8 overflow-x-auto px-6 py-3">
+        <div className="flex items-center gap-2 overflow-x-auto px-3 py-2.5 sm:gap-4 sm:px-4 sm:py-3 md:gap-8 md:px-6">
           {categoryLoading ? (
-            <p className="text-sm text-gray-500">ক্যাটাগরি লোড হচ্ছে...</p>
+            <p className="shrink-0 text-sm text-gray-500">
+              ক্যাটাগরি লোড হচ্ছে...
+            </p>
           ) : categories.length > 0 ? (
             categories.map((category) => {
               const href = `/category/${category.slug}`;
@@ -210,7 +220,7 @@ export default function Navbar() {
                 <Link
                   key={category.id}
                   href={href}
-                  className={`flex items-center gap-2 whitespace-nowrap rounded-xl px-3 py-1.5 text-sm font-medium transition ${
+                  className={`flex shrink-0 items-center gap-2 whitespace-nowrap rounded-xl px-3 py-1.5 text-xs font-medium transition sm:text-sm ${
                     isActive
                       ? "bg-green-700 text-white"
                       : "text-gray-700 hover:bg-green-50 hover:text-green-700"
@@ -222,7 +232,9 @@ export default function Navbar() {
               );
             })
           ) : (
-            <p className="text-sm text-red-500">ক্যাটাগরি লোড করা যায়নি।</p>
+            <p className="shrink-0 text-sm text-red-500">
+              ক্যাটাগরি লোড করা যায়নি।
+            </p>
           )}
         </div>
       </div>

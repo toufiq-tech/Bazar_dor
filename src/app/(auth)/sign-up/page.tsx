@@ -1,3 +1,4 @@
+
 "use client";
 
 import toast from "react-hot-toast";
@@ -27,29 +28,28 @@ export default function SignupPage() {
     }
 
     const { data: signUpData, error } = await signUp.email({
-    name: data.name as string,
-    email: data.email as string,
-    password: data.password as string,});
+      name: data.name as string,
+      email: data.email as string,
+      password: data.password as string,
+    });
     if (signUpData?.user.name) {
       toast.success("অ্যাকাউন্ট তৈরি হয়েছে! অনুগ্রহ করে লগইন করুন।");
       router.push("/sign-in");
     }
   };
   const handleGoogleSignUp = async () => {
-         await signIn.social({
-    provider: "google",
-  });
-    }
+    await signIn.social({
+      provider: "google",
+    });
+  };
   const handleGithubSignUp = async () => {
-         await signIn.social({
-    provider: "github",
-  });
-    }
-
-
+    await signIn.social({
+      provider: "github",
+    });
+  };
 
   return (
-    <main className="min-h-screen bg-[#f1f6f1] flex flex-col items-center justify-center px-4 py-8">
+    <main className="min-h-screen bg-[#f1f6f1] flex flex-col items-center justify-center px-3 py-6 sm:px-4 sm:py-8">
       <div className="text-center mb-5">
         <h1 className="text-xl font-bold text-gray-800">
           অ্যাকাউন্ট তৈরি করুন
@@ -60,7 +60,7 @@ export default function SignupPage() {
         </p>
       </div>
 
-      <div className="w-full max-w-100 bg-white/80 border border-gray-200 rounded-xl p-6 shadow-sm">
+      <div className="w-full max-w-[400px] bg-white/80 border border-gray-200 rounded-xl p-4 sm:p-6 shadow-sm">
         <Form onSubmit={onSubmit} className="space-y-3">
           <TextField
             isRequired
@@ -166,16 +166,16 @@ export default function SignupPage() {
           <div className="h-px bg-gray-200 flex-1" />
         </div>
 
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-1 min-[360px]:grid-cols-2 gap-2">
           <button
             type="button"
             onClick={handleGoogleSignUp}
-            className="h-10 border border-[#E5E7EB] rounded-lg flex items-center justify-center gap-2 text-[10px] font-medium text-[#333]"
+            className="min-h-10 border border-[#E5E7EB] rounded-lg flex items-center justify-center gap-2 px-2 py-2 text-[10px] font-medium text-[#333]"
           >
             <Image
               src="https://www.svgrepo.com/show/475656/google-color.svg"
               alt="google"
-              className="w-4 h-4"
+              className="w-4 h-4 shrink-0"
               width={16}
               height={16}
             />
@@ -185,11 +185,11 @@ export default function SignupPage() {
           <button
             type="button"
             onClick={handleGithubSignUp}
-            className="h-10 border border-[#E5E7EB] rounded-lg flex items-center justify-center gap-2 text-[10px] font-medium text-[#333]"
+            className="min-h-10 border border-[#E5E7EB] rounded-lg flex items-center justify-center gap-2 px-2 py-2 text-[10px] font-medium text-[#333]"
           >
             <svg
               viewBox="0 0 24 24"
-              className="w-4 h-4 fill-current"
+              className="w-4 h-4 shrink-0 fill-current"
             >
               <path d="M12 .5C5.648.5.5 5.648.5 12c0 5.086 3.292 9.403 7.861 10.926.575.106.786-.25.786-.556 0-.274-.01-1-.016-1.963-3.199.695-3.875-1.543-3.875-1.543-.524-1.333-1.28-1.688-1.28-1.688-1.046-.714.08-.7.08-.7 1.156.082 1.764 1.186 1.764 1.186 1.028 1.76 2.696 1.251 3.353.957.104-.744.403-1.251.733-1.538-2.553-.29-5.238-1.276-5.238-5.682 0-1.255.449-2.28 1.183-3.084-.118-.29-.513-1.459.112-3.041 0 0 .965-.309 3.162 1.178a10.97 10.97 0 012.878-.387 10.97 10.97 0 012.878.387c2.196-1.487 3.159-1.178 3.159-1.178.627 1.582.232 2.751.114 3.041.737.804 1.18 1.829 1.18 3.084 0 4.417-2.689 5.389-5.252 5.674.414.356.782 1.058.782 2.133 0 1.54-.014 2.782-.014 3.161 0 .309.207.668.792.555C20.212 21.399 23.5 17.084 23.5 12 23.5 5.648 18.352.5 12 .5z" />
             </svg>

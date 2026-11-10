@@ -43,7 +43,7 @@ export default function PriceRise() {
   }, []);
 
   return (
-    <section className="mx-auto max-w-6xl px-4 pb-8">
+    <section className="mx-auto max-w-6xl px-3 pb-6 sm:px-4 sm:pb-8">
 
       {/* Heading */}
       <h2 className="mb-4 flex items-center gap-2 text-base font-bold text-gray-800">
@@ -59,17 +59,17 @@ export default function PriceRise() {
       ) : products.length > 0 ? (
 
         /* Product Grid */
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-3 min-[480px]:grid-cols-2 md:grid-cols-3">
 
           {products.map((product) => (
             <Link
               href={`/products/${product.id}`}
               key={product.id}
-              className="rounded-xl border border-gray-200 bg-[#fbfdfb] p-3 transition hover:shadow-md"
+              className="min-w-0 rounded-xl border border-gray-200 bg-[#fbfdfb] p-3 transition hover:shadow-md"
             >
 
               {/* Product Info */}
-              <div className="mb-2 flex items-center gap-3">
+              <div className="mb-2 flex min-w-0 items-center gap-3">
 
                 {/* Product Icon */}
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#f1f7f2] text-xl">
@@ -90,9 +90,9 @@ export default function PriceRise() {
               </div>
 
               {/* Price & Percentage */}
-              <div className="flex items-end justify-between gap-2">
+              <div className="flex min-w-0 items-end justify-between gap-2">
 
-                <div>
+                <div className="min-w-0">
                   <p className="mb-1 text-[10px] text-gray-500">
                     আজকের দাম
                   </p>
@@ -103,7 +103,7 @@ export default function PriceRise() {
                 </div>
 
                 {/* Price Increase Badge */}
-                <span className="whitespace-nowrap rounded-full bg-red-50 px-2 py-1 text-[10px] font-semibold text-red-500">
+                <span className="shrink-0 whitespace-nowrap rounded-full bg-red-50 px-2 py-1 text-[10px] font-semibold text-red-500">
                   ▲ {product.change.pct.toLocaleString("bn-BD")}%
                 </span>
 

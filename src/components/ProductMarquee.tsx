@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -40,7 +39,7 @@ export default function ProductMarquee() {
 
   if (loading) {
     return (
-      <div className="border-b bg-white px-4 py-2 text-xs text-gray-500">
+      <div className="border-b bg-white px-3 py-2 text-[11px] text-gray-500 sm:px-4 sm:text-xs">
         পণ্যের দাম লোড হচ্ছে...
       </div>
     );
@@ -62,10 +61,10 @@ export default function ProductMarquee() {
         {products.map((product) => (
           <div
             key={product.id}
-            className="flex shrink-0 items-center gap-2 border-r border-gray-200 px-4 text-xs"
+            className="flex shrink-0 items-center gap-1.5 border-r border-gray-200 px-2.5 text-[11px] sm:gap-2 sm:px-4 sm:text-xs"
           >
             {/* Product Icon */}
-            <span className="text-sm">
+            <span className="shrink-0 text-sm">
               {product.image || product.categoryIcon}
             </span>
 
@@ -82,11 +81,11 @@ export default function ProductMarquee() {
 
             {/* Price Change */}
             {product.change.dir === "up" ? (
-              <span className="font-semibold text-red-500">
+              <span className="shrink-0 font-semibold text-red-500">
                 ▲ {product.change.pct}%
               </span>
             ) : (
-              <span className="font-semibold text-green-600">
+              <span className="shrink-0 font-semibold text-green-600">
                 ▼ {product.change.pct}%
               </span>
             )}
