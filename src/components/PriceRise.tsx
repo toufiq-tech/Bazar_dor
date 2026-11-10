@@ -1,8 +1,8 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
 import type { Iproduct } from "../types/type";
+import Link from "next/link";
 
 export default function PriceRise() {
   const [products, setProducts] = useState<Iproduct[]>([]);
@@ -62,7 +62,8 @@ export default function PriceRise() {
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
 
           {products.map((product) => (
-            <div
+            <Link
+              href={`/products/${product.id}`}
               key={product.id}
               className="rounded-xl border border-gray-200 bg-[#fbfdfb] p-3 transition hover:shadow-md"
             >
@@ -108,7 +109,7 @@ export default function PriceRise() {
 
               </div>
 
-            </div>
+            </Link>
           ))}
 
         </div>
