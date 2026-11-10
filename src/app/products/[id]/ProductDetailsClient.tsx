@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -19,7 +18,7 @@ export default function ProductDetailsClient({ id }: { id: string }) {
         setError("");
 
         const response = await fetch(
-          `https://openapi.programming-hero.com/api/bazardor/products/${id}`
+          `https://openapi.programming-hero.com/api/bazardor/products/${id}`,
         );
 
         if (!response.ok) {
@@ -27,8 +26,7 @@ export default function ProductDetailsClient({ id }: { id: string }) {
         }
 
         const result = await response.json();
-        const productData: Iproduct =
-          result.data ?? result.product ?? result;
+        const productData: Iproduct = result.data ?? result.product ?? result;
 
         if (!productData?.id) {
           throw new Error("Product not found");
@@ -73,23 +71,18 @@ export default function ProductDetailsClient({ id }: { id: string }) {
   const markets = product.markets ?? [];
 
   const minPrice =
-    markets.length > 0
-      ? Math.min(...markets.map((market) => market.min))
-      : 0;
+    markets.length > 0 ? Math.min(...markets.map((market) => market.min)) : 0;
 
   const maxPrice =
-    markets.length > 0
-      ? Math.max(...markets.map((market) => market.max))
-      : 0;
+    markets.length > 0 ? Math.max(...markets.map((market) => market.max)) : 0;
 
   const avgPrice =
     markets.length > 0
       ? Math.round(
           markets.reduce(
-            (total, market) =>
-              total + (market.min + market.max) / 2,
-            0
-          ) / markets.length
+            (total, market) => total + (market.min + market.max) / 2,
+            0,
+          ) / markets.length,
         )
       : 0;
 
@@ -103,11 +96,9 @@ export default function ProductDetailsClient({ id }: { id: string }) {
   return (
     <main className="min-h-screen bg-[#f1f6f2] px-3 py-3 sm:px-4">
       <div className="mx-auto max-w-6xl space-y-3">
-
         {/* Product Header */}
         <section className="rounded-xl border border-gray-200 bg-[#fbfdfb] p-3">
           <div className="flex items-center justify-between gap-2">
-
             <div className="flex min-w-0 items-center gap-2.5">
               <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#f1f7f2] text-2xl">
                 {product.image || product.categoryIcon}
@@ -127,40 +118,36 @@ export default function ProductDetailsClient({ id }: { id: string }) {
                   {product.change.dir === "up"
                     ? "বেড়েছে"
                     : product.change.dir === "down"
-                    ? "কমেছে"
-                    : "অপরিবর্তিত"}
+                      ? "কমেছে"
+                      : "অপরিবর্তিত"}
                 </p>
               </div>
             </div>
 
             {/* Today's Price */}
             <div className="shrink-0 rounded-xl bg-[#f1f7f2] px-3 py-2 text-center">
-              <p className="text-[9px] text-gray-500">
-                আজকের দাম
-              </p>
+              <p className="text-[9px] text-gray-500">আজকের দাম</p>
 
               <p className="text-lg font-bold leading-6 text-gray-800">
                 {product.today.toLocaleString("bn-BD")}
               </p>
 
-              <p className="text-[9px] text-gray-500">
-                টাকা / {product.unit}
-              </p>
+              <p className="text-[9px] text-gray-500">টাকা / {product.unit}</p>
 
               <p
                 className={`text-[9px] font-semibold ${
                   product.change.dir === "up"
                     ? "text-red-500"
                     : product.change.dir === "down"
-                    ? "text-green-600"
-                    : "text-gray-500"
+                      ? "text-green-600"
+                      : "text-gray-500"
                 }`}
               >
                 {product.change.dir === "up"
                   ? "▲"
                   : product.change.dir === "down"
-                  ? "▼"
-                  : "●"}{" "}
+                    ? "▼"
+                    : "●"}{" "}
                 {Math.abs(product.change.pct).toLocaleString("bn-BD")}%
               </p>
             </div>
@@ -174,66 +161,29 @@ export default function ProductDetailsClient({ id }: { id: string }) {
           </h2>
 
           <div className="grid grid-cols-3 gap-2">
-
             <div className="rounded-xl border border-gray-200 p-2.5">
-              <p className="text-[9px] text-gray-600">
-                সর্বনিম্ন দাম
-              </p>
+              <p className="text-[9px] text-gray-600">সর্বনিম্ন দাম</p>
               <p className="mt-1 text-sm font-bold text-green-600">
                 {minPrice.toLocaleString("bn-BD")} টাকা
               </p>
-              <p className="text-[8px] text-gray-500">
-                বাজারের সর্বনিম্ন দাম
-              </p>
+              <p className="text-[8px] text-gray-500">বাজারের সর্বনিম্ন দাম</p>
             </div>
 
             <div className="rounded-xl border border-gray-200 p-2.5">
-              <p className="text-[9px] text-gray-600">
-                সর্বোচ্চ দাম
-              </p>
+              <p className="text-[9px] text-gray-600">সর্বোচ্চ দাম</p>
               <p className="mt-1 text-sm font-bold text-red-500">
                 {maxPrice.toLocaleString("bn-BD")} টাকা
               </p>
-              <p className="text-[8px] text-gray-500">
-                বাজারের সর্বোচ্চ দাম
-              </p>
+              <p className="text-[8px] text-gray-500">বাজারের সর্বোচ্চ দাম</p>
             </div>
 
             <div className="rounded-xl border border-gray-200 p-2.5">
-              <p className="text-[9px] text-gray-600">
-                গড় দাম
-              </p>
+              <p className="text-[9px] text-gray-600">গড় দাম</p>
               <p className="mt-1 text-sm font-bold text-green-600">
                 {avgPrice.toLocaleString("bn-BD")} টাকা
               </p>
-              <p className="text-[8px] text-gray-500">
-                বাজারের গড় দাম
-              </p>
+              <p className="text-[8px] text-gray-500">বাজারের গড় দাম</p>
             </div>
-
-          </div>
-        </section>
-
-        {/* Price History */}
-        <section className="rounded-xl border border-gray-200 bg-[#fbfdfb] p-3">
-          <h2 className="mb-3 text-xs font-bold text-gray-800">
-            পণ্যের দাম পরিবর্তনের তথ্য
-          </h2>
-
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-            {priceHistory.map((item) => (
-              <div
-                key={item.label}
-                className="rounded-xl border border-gray-200 p-2.5"
-              >
-                <p className="text-[9px] text-gray-500">
-                  {item.label}
-                </p>
-                <p className="mt-1 text-sm font-bold text-gray-800">
-                  {item.price.toLocaleString("bn-BD")} টাকা
-                </p>
-              </div>
-            ))}
           </div>
         </section>
 
@@ -253,14 +203,10 @@ export default function ProductDetailsClient({ id }: { id: string }) {
             <table className="w-full min-w-[450px] text-left text-[10px]">
               <thead className="bg-[#f1f7f2] text-gray-600">
                 <tr>
-                  <th className="rounded-l-lg px-2.5 py-2.5">
-                    বাজারের নাম
-                  </th>
+                  <th className="rounded-l-lg px-2.5 py-2.5">বাজারের নাম</th>
                   <th className="px-2.5 py-2.5">বিভাগ</th>
                   <th className="px-2.5 py-2.5">সর্বনিম্ন দাম</th>
-                  <th className="rounded-r-lg px-2.5 py-2.5">
-                    সর্বোচ্চ দাম
-                  </th>
+                  <th className="rounded-r-lg px-2.5 py-2.5">সর্বোচ্চ দাম</th>
                 </tr>
               </thead>
 
@@ -298,7 +244,6 @@ export default function ProductDetailsClient({ id }: { id: string }) {
             ← ফিরে যাও
           </button>
         </div>
-
       </div>
     </main>
   );
