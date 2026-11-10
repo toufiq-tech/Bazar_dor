@@ -6,7 +6,8 @@ import NextImage from "next/image";
 import { useEffect, useState, useRef } from "react";
 import { useSession, signOut } from "../lib/auth-client";
 import type { Icategory } from "../types/type";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+
 
 export default function Navbar() {
   const [formatedDate, setFormatedDate] = useState("");
@@ -19,6 +20,7 @@ export default function Navbar() {
 
   const { data } = useSession();
   const pathname = usePathname();
+  const router = useRouter();
 
   const user = data?.user;
 
@@ -161,7 +163,7 @@ export default function Navbar() {
                     onClick={async () => {
                       await signOut();
                       setDropdownOpen(false);
-                      window.location.href = "/sign-in";
+                      router.push("/sign-in");
                     }}
                     className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-red-500 transition hover:bg-red-50"
                   >
