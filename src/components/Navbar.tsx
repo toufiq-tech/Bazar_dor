@@ -6,6 +6,7 @@ import {
   ChevronDown,
   UserRound,
   LogOut,
+  Image,
 } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 import { useSession, signOut } from "../lib/auth-client";
@@ -86,6 +87,7 @@ export default function Navbar() {
       <div className="flex items-center justify-between px-6 py-3">
 
         {/* Logo & Date */}
+        <Link href="/">
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-green-600 text-white">
             <ShoppingBasket size={20} />
@@ -101,6 +103,7 @@ export default function Navbar() {
             </p>
           </div>
         </div>
+        </Link>
 
         {/* Authentication */}
         <div className="flex items-center gap-6">
@@ -114,7 +117,9 @@ export default function Navbar() {
                 className="flex items-center gap-2 rounded-lg px-2 py-1.5 transition hover:bg-gray-100"
               >
                 {user.image ? (
-                  <img
+                  <Image
+                    width={36}
+                    height={36}
                     src={user.image}
                     alt="Profile"
                     className="h-9 w-9 rounded-full object-cover"
