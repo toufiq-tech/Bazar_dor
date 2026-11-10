@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { useSession, signOut, updateUser } from "../../../lib/auth-client";
-import { Image, LogOut } from "lucide-react";
+import { LogOut } from "lucide-react";
+import NextImage from "next/image";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
@@ -54,7 +55,7 @@ export default function ProfilePage() {
         <div className="mb-4 flex items-center justify-between rounded-xl border border-gray-200 bg-white p-4">
           <div className="flex items-center gap-3">
             {user?.image ? (
-              <Image
+              <NextImage
                 width={48}
                 height={48}
                 src={user.image}
