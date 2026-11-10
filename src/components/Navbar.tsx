@@ -1,16 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import {
-  ShoppingBasket,
-  ChevronDown,
-  UserRound,
-  LogOut,
-} from "lucide-react";
+import { ShoppingBasket, ChevronDown, UserRound, LogOut } from "lucide-react";
 import NextImage from "next/image";
 import { useEffect, useState, useRef } from "react";
 import { useSession, signOut } from "../lib/auth-client";
 import type { Icategory } from "../types/type";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [formatedDate, setFormatedDate] = useState("");
@@ -22,6 +18,7 @@ export default function Navbar() {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const { data } = useSession();
+  const pathname = usePathname();
 
   const user = data?.user;
 
@@ -33,7 +30,7 @@ export default function Navbar() {
         year: "numeric",
         month: "long",
         day: "numeric",
-      })
+      }),
     );
   }, []);
 
@@ -42,7 +39,7 @@ export default function Navbar() {
     const fetchCategories = async () => {
       try {
         const response = await fetch(
-          "https://openapi.programming-hero.com/api/bazardor/categories"
+          "https://openapi.programming-hero.com/api/bazardor/categories",
         );
 
         if (!response.ok) {
@@ -82,35 +79,27 @@ export default function Navbar() {
 
   return (
     <div className="w-full border-b bg-white">
-
       {/* Main Navbar */}
       <div className="flex items-center justify-between px-6 py-3">
-
         {/* Logo & Date */}
         <Link href="/">
-        <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-green-600 text-white">
-            <ShoppingBasket size={20} />
-          </div>
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-green-600 text-white">
+              <ShoppingBasket size={20} />
+            </div>
 
-          <div>
-            <h1 className="text-lg font-bold text-gray-800">
-              বাজার দর
-            </h1>
+            <div>
+              <h1 className="text-lg font-bold text-gray-800">বাজার দর</h1>
 
-            <p className="text-xs text-gray-500">
-              {formatedDate}
-            </p>
+              <p className="text-xs text-gray-500">{formatedDate}</p>
+            </div>
           </div>
-        </div>
         </Link>
 
         {/* Authentication */}
         <div className="flex items-center gap-6">
-
           {user ? (
             <div className="relative" ref={dropdownRef}>
-
               {/* Profile Button */}
               <button
                 onClick={() => setDropdownOpen(!dropdownOpen)}
@@ -145,16 +134,11 @@ export default function Navbar() {
               {/* Dropdown */}
               {dropdownOpen && (
                 <div className="absolute right-0 top-full z-50 mt-2 w-64 rounded-xl border border-gray-200 bg-white p-3 shadow-lg">
-
                   {/* User Info */}
                   <div className="border-b pb-3">
-                    <h3 className="font-semibold text-gray-800">
-                      {user.name}
-                    </h3>
+                    <h3 className="font-semibold text-gray-800">{user.name}</h3>
 
-                    <p className="mt-1 text-sm text-gray-500">
-                      {user.email}
-                    </p>
+                    <p className="mt-1 text-sm text-gray-500">{user.email}</p>
                   </div>
 
                   {/* My Profile */}
@@ -187,7 +171,6 @@ export default function Navbar() {
 
                     <span>লগআউট</span>
                   </button>
-
                 </div>
               )}
             </div>
@@ -208,39 +191,39 @@ export default function Navbar() {
               </Link>
             </>
           )}
-
         </div>
       </div>
 
       {/* Dynamic Categories */}
       <div className="border-t bg-gray-50">
         <div className="flex items-center gap-8 overflow-x-auto px-6 py-3">
-
           {categoryLoading ? (
-            <p className="text-sm text-gray-500">
-              ক্যাটাগরি লোড হচ্ছে...
-            </p>
+            <p className="text-sm text-gray-500">ক্যাটাগরি লোড হচ্ছে...</p>
           ) : categories.length > 0 ? (
-            categories.map((category) => (
-              <Link
-                key={category.id}
-                href={`/category/${category.slug}`}
-                className="flex items-center gap-2 whitespace-nowrap text-sm text-gray-700 transition hover:text-green-600"
-              >
-                <span>{category.icon}</span>
+            categories.map((category) => {
+              const href = `/category/${category.slug}`;
+              const isActive = pathname === href;
 
-                <span>{category.nameBn}</span>
-              </Link>
-            ))
+              return (
+                <Link
+                  key={category.id}
+                  href={href}
+                  className={`flex items-center gap-2 whitespace-nowrap rounded-xl px-3 py-1.5 text-sm font-medium transition ${
+                    isActive
+                      ? "bg-green-700 text-white"
+                      : "text-gray-700 hover:bg-green-50 hover:text-green-700"
+                  }`}
+                >
+                  <span>{category.icon}</span>
+                  <span>{category.nameBn}</span>
+                </Link>
+              );
+            })
           ) : (
-            <p className="text-sm text-red-500">
-              ক্যাটাগরি লোড করা যায়নি।
-            </p>
+            <p className="text-sm text-red-500">ক্যাটাগরি লোড করা যায়নি।</p>
           )}
-
         </div>
       </div>
-
     </div>
   );
 }
