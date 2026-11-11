@@ -109,11 +109,11 @@ export default function Navbar() {
               {/* Profile Button */}
               <button
                 onClick={() => setDropdownOpen(!dropdownOpen)}
-                className="flex max-w-[190px] items-center gap-1.5 rounded-lg px-1.5 py-1.5 transition hover:bg-gray-100 sm:max-w-none sm:gap-2 sm:px-2"
+                className="flex max-w-48 items-center gap-1.5 rounded-lg px-1.5 py-1.5 transition hover:bg-gray-100 sm:max-w-none sm:gap-2 sm:px-2"
               >
                 {user.image ? (
                   <NextImage
-                    src="/static/logo-icon.png"
+                    src={user.image}
                     width={36}
                     height={36}
                     alt="লোগো"
@@ -142,7 +142,7 @@ export default function Navbar() {
                 <div className="absolute right-0 top-full z-50 mt-2 w-[min(16rem,calc(100vw-1.5rem))] rounded-xl border border-gray-200 bg-white p-3 shadow-lg">
                   {/* User Info */}
                   <div className="border-b pb-3">
-                    <h3 className="break-words font-semibold text-gray-800">
+                    <h3 className="wrap-break-words font-semibold text-gray-800">
                       {user.name}
                     </h3>
 
