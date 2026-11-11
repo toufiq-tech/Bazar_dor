@@ -2,16 +2,19 @@
 
 **BazarDor** is a web application that helps users explore daily market prices and compare product prices across different markets. It aims to make shopping easier by providing useful price information in one place.
 
-🛠️ Technologies Used
-Technology	Purpose
-Next.js 16	React framework
-React	User interface
-TypeScript	Type safety
-Tailwind CSS	Responsive styling
-MongoDB	Database
-Better Auth	Authentication
-Next.js App Router	Application routing
-Vercel	Deployment
+🚀 Technologies Used
+
+Next.js – React framework for building the web application
+
+React – Component-based user interface
+
+TypeScript – Type-safe JavaScript development
+
+Tailwind CSS – Responsive and modern UI styling
+
+MongoDB – Database
+
+Better Auth – Authentication and user management
 
 ✨ Features
 - Daily Market Prices: Explore the latest available prices of different products.
