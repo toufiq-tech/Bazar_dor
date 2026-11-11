@@ -1,4 +1,3 @@
-
 "use client";
 
 import Image from "next/image";
@@ -27,21 +26,28 @@ export default function SignIn() {
     });
   };
 
-  const onSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const onSubmit = async (
+  e: React.SyntheticEvent<HTMLFormElement>
+) => {
+  e.preventDefault();
 
-    const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData.entries());
+  const formData = new FormData(e.currentTarget);
+  const data = Object.fromEntries(formData.entries());
 
-    const { data: signInData, error } = await signIn.email({
-      email: data.email as string,
-      password: data.password as string,
-      callbackURL: "/",
-    });
+  const { data: signInData, error } = await signIn.email({
+    email: data.email as string,
+    password: data.password as string,
+    callbackURL: "/",
+  });
+  console.log("signInData", signInData);
 
-    console.log("Sign In Data:", signInData, error);
-    toast.success("সাইন ইন সফল হয়েছে!");
-  };
+  if (error) {
+    toast.error("ইমেইল বা পাসওয়ার্ড ভুল");
+    return;
+  }
+
+  toast.success("সাইন ইন সফল হয়েছে!");
+};
 
   return (
     <div className="min-h-screen bg-[#F3F5F4] flex flex-col items-center px-3 pt-8 sm:px-4">

@@ -24,7 +24,7 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-[#f1f7f2] px-3 py-5 sm:px-4 sm:py-8">
 
-      <section className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-4 rounded-2xl border border-gray-200 bg-[#fbfdfb] px-4 py-5 sm:px-6 sm:py-6 md:flex-row md:items-center md:gap-6 md:px-10 md:py-8">
+      <section className="container mx-auto flex max-w-6xl flex-col items-start justify-between gap-4 rounded-2xl border border-gray-200 bg-[#fbfdfb] px-4 py-5 sm:px-6 sm:py-6 md:flex-row md:items-center md:gap-6 md:px-10 md:py-8">
 
         {/* Left Content */}
         <div className="w-full min-w-0 flex-1">

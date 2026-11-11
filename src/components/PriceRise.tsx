@@ -43,7 +43,7 @@ export default function PriceRise() {
   }, []);
 
   return (
-    <section className="mx-auto max-w-6xl px-3 pb-6 sm:px-4 sm:pb-8">
+    <section className="container mx-auto max-w-6xl px-3 pb-6 sm:px-4 sm:pb-8">
 
       {/* Heading */}
       <h2 className="mb-4 flex items-center gap-2 text-base font-bold text-gray-800">

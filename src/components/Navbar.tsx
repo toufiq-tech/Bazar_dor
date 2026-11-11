@@ -80,7 +80,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <div className="w-full border-b bg-white">
+    <div className="container mx-auto w-full border-b bg-white">
       {/* Main Navbar */}
       <div className="flex flex-wrap items-center justify-between gap-3 px-3 py-3 sm:px-4 md:px-6">
         {/* Logo & Date */}

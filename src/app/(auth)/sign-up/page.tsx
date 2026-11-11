@@ -17,26 +17,33 @@ import { useRouter } from "next/navigation";
 export default function SignupPage() {
   const router = useRouter();
   const onSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData.entries());
+  const formData = new FormData(e.currentTarget);
+  const data = Object.fromEntries(formData.entries());
 
-    if (data.password !== data.confirmPassword) {
-      console.error("পাসওয়ার্ড মিলছে না!!");
-      return;
-    }
+  if (data.password !== data.confirmPassword) {
+    toast.error("পাসওয়ার্ড মিলছে না!");
+    return;
+  }
 
-    const { data: signUpData, error } = await signUp.email({
-      name: data.name as string,
-      email: data.email as string,
-      password: data.password as string,
-    });
-    if (signUpData?.user.name) {
-      toast.success("অ্যাকাউন্ট তৈরি হয়েছে! অনুগ্রহ করে লগইন করুন।");
-      router.push("/sign-in");
-    }
-  };
+  const { data: signUpData, error } = await signUp.email({
+    name: data.name as string,
+    email: data.email as string,
+    password: data.password as string,
+  });
+
+  if (error) {
+    toast.error(error.message || "অ্যাকাউন্ট তৈরি করা যায়নি");
+    return;
+  }
+
+  if (signUpData?.user?.name) {
+    toast.success("অ্যাকাউন্ট তৈরি হয়েছে! অনুগ্রহ করে লগইন করুন।");
+    router.push("/sign-in");
+  }
+};
+
   const handleGoogleSignUp = async () => {
     await signIn.social({
       provider: "google",

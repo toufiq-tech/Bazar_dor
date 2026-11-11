@@ -90,7 +90,7 @@ export default function CategoryClient({
   return (
     <main className="min-h-screen bg-[#f1f7f2] px-3 py-6 sm:px-4 sm:py-8">
 
-      <div className="mx-auto max-w-6xl">
+      <div className="container mx-auto max-w-6xl">
 
         {/* Loading */}
         {loading ? (

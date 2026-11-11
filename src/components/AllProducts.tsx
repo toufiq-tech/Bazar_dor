@@ -40,7 +40,7 @@ export default function AllProducts() {
   }, []);
 
   return (
-    <section className="mx-auto max-w-6xl px-3 pb-8 sm:px-4 sm:pb-10">
+    <section className="container mx-auto max-w-6xl px-3 pb-8 sm:px-4 sm:pb-10">
 
       {/* Heading */}
       <div id="all-products" className="mb-4">

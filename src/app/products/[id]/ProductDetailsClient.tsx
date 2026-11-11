@@ -95,7 +95,7 @@ export default function ProductDetailsClient({ id }: { id: string }) {
 
   return (
     <main className="min-h-screen bg-[#f1f6f2] px-3 py-3 sm:px-4">
-      <div className="mx-auto max-w-6xl space-y-3">
+      <div className="container mx-auto max-w-6xl space-y-3">
         {/* Product Header */}
         <section className="rounded-xl border border-gray-200 bg-[#fbfdfb] p-3 sm:p-4">
           <div className="flex flex-col gap-3 min-[400px]:flex-row min-[400px]:items-center min-[400px]:justify-between">
