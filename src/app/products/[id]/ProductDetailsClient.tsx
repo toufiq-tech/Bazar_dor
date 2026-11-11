@@ -200,7 +200,7 @@ export default function ProductDetailsClient({ id }: { id: string }) {
           </div>
 
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[450px] text-left text-[10px]">
+            <table className="w-full min-w-113 text-left text-[10px]">
               <thead className="bg-[#f1f7f2] text-gray-600">
                 <tr>
                   <th className="rounded-l-lg px-2.5 py-2.5">বাজারের নাম</th>
